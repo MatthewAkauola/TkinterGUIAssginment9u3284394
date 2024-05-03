@@ -15,10 +15,12 @@ class CarPricePredictionApp:
 
         self.data.pop("Unnamed: 0")
         self.data.pop("Name")
+        self.data.pop("Year")
         self.data.pop("Location")
         self.data.pop("Fuel_Type")
         self.data.pop("Transmission")
         self.data.pop("Owner_Type")
+        self.data.pop("Seats")
 
         self.X = self.data.drop("Price", axis=1).values
         self.y = self.data["Price"].values
@@ -52,7 +54,7 @@ class CarPricePredictionApp:
         if self.model.predict([inputs]) < 0:
             price = self.model.predict([inputs]) * 0
         else:
-            price = self.model.predict([inputs]) * 1000
+            price = self.model.predict([inputs]) * 1820
         print(type(price))
         
         messagebox.showinfo("Predicted Price", f"The predicted car price is ${price[0]:.2f}")
